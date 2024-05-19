@@ -6,6 +6,7 @@ import jwt from "jsonwebtoken";
 export const register = async (req, res) => {
 
     const { username, password, email } = req.body;
+    console.log(username);
 
     try {
         // HASH PASSWORD

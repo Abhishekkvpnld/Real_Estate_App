@@ -8,10 +8,9 @@ function HomePage() {
         <div className="wrapper">
           <h2 className="title">Find Real Estate & Get Your Dream Place</h2>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos
-            explicabo suscipit cum eius, iure est nulla animi consequatur
-            facilis id pariatur fugit quos laudantium temporibus dolor ea
-            repellat provident impedit!
+            Discover your dream home with RealEstate.
+            Our platform offers a seamless and intuitive way to search, view, and purchase properties.
+            Whether you're looking to buy, rent, or sell, we have the tools and expertise to help you every step of the way.
           </p>
           <SearchBar />
           <div className="boxes">
