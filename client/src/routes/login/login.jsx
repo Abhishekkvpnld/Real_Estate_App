@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./login.scss";
 import { Link, useNavigate } from "react-router-dom";
-import apiRequest from "../../lib/apiRequest";
+import axiosRequest from "../../lib/apiRequest";
 
 function Login() {
 
@@ -11,9 +11,11 @@ function Login() {
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
-
-    setIsLoading(true)
     e.preventDefault();
+    
+    setIsLoading(true);
+    setError("");
+
     const formData = new FormData(e.target);
 
     const username = formData.get("username");
@@ -21,11 +23,12 @@ function Login() {
 
     try {
 
-      const res = await apiRequest.post("/auth/login", {
+      const res = await axiosRequest.post("/auth/login", {
         username,
-        email,
         password
       });
+
+      localStorage.setItem("user",JSON.stringify(res.data));
 
       navigate("/");
 
@@ -42,8 +45,8 @@ function Login() {
       <div className="formContainer">
         <form onSubmit={handleSubmit}>
           <h1>Welcome back</h1>
-          <input name="username" type="text" placeholder="Username" />
-          <input name="password" type="password" placeholder="Password" />
+          <input required name="username" type="text" placeholder="Username" />
+          <input required name="password" type="password" placeholder="Password" />
           <button disabled={isLoading} >Login</button>
           {error && <span>{error}</span>}
           <Link to="/register">{"Don't"} you have an account?</Link>

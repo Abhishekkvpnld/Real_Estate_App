@@ -1,8 +1,9 @@
 import express from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import postRoute from "./routes/postRoute.js";
-import authRoute from './routes/authRoute.js';
+import postRoute from "./routes/post.route.js";
+import authRoute from './routes/auth.route.js';
+import testRoute from "./routes/test.route.js";
 import dotenv from "dotenv";
 
 
@@ -17,6 +18,7 @@ app.use(cookieParser());
  
 app.use("/api/posts",postRoute);
 app.use("/api/auth",authRoute);
+app.use("/api/test",testRoute);
  
 app.get("/",(req,res)=>{ 
 res.send("server running...")
