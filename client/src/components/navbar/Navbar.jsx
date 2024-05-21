@@ -1,13 +1,21 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "./navbar.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import avatar from "/Avatar.webp";
 
 function Navbar() {
   const [open, setOpen] = useState(false);
 
+  const navigate = useNavigate();
   const { currentUser } = useContext(AuthContext);
+
+  useEffect(()=>{
+    if(!currentUser){
+      navigate("/login")
+    }
+  },[currentUser,navigate]);
+
 
   return (
     <nav>
@@ -25,7 +33,7 @@ function Navbar() {
         {currentUser ? (
           <div className="user">
             <img
-              src={currentUser.avatar || avatar}
+              src={currentUser.avatar || avatar} 
             />
             <span>{currentUser.username}</span>
             <Link to="/profile" className="profile">
@@ -34,12 +42,12 @@ function Navbar() {
             </Link>
           </div>
         ) : (
-          <>
-            <a href="/">Sign in</a>
-            <a href="/" className="register">
+          <div style={{ display: "flex" }}>
+            <a href="/login">Sign in</a>
+            <a href="/register" className="register">
               Sign up
             </a>
-          </>
+          </div>
         )}
         <div className="menuIcon">
           <img
@@ -53,8 +61,8 @@ function Navbar() {
           <a href="/">About</a>
           <a href="/">Contact</a>
           <a href="/">Agents</a>
-          <a href="/">Sign in</a>
-          <a href="/">Sign up</a>
+          <a href="/login">Sign in</a>
+          <a href="/register">Sign up</a>
         </div>
       </div>
     </nav>
