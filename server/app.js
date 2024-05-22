@@ -24,7 +24,7 @@ app.use("/api/users",userRoute);
  
 app.get("/",(req,res)=>{ 
 res.send("server running...")
-});
+}); 
 
 app.listen(5000,()=>{
 console.log("Server running on Port 5000...");
