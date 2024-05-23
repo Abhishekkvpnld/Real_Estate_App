@@ -12,7 +12,7 @@ function ProfileUpdatePage() {
   const { updateUser, currentUser } = useContext(AuthContext);
 
   const [error, setError] = useState('');
-  const [avatar, setAvatar] = useState('');
+  const [avatar, setAvatar] = useState([]);
 
 
   const handleSubmit = async (e) => {
@@ -25,7 +25,12 @@ function ProfileUpdatePage() {
 
     try {
 
-      const res = await axiosRequest.put(`/users/${currentUser.id}`, { username, email, password, avatar });
+      const res = await axiosRequest.put(`/users/${currentUser.id}`, {
+        username,
+        email,
+        password,
+        avatar: avatar[0]
+      });
       updateUser(res.data);
       navigate("/profile")
 
@@ -35,7 +40,7 @@ function ProfileUpdatePage() {
     }
 
   };
- 
+
   return (
     <div className="profileUpdatePage">
       <div className="formContainer">
@@ -68,7 +73,7 @@ function ProfileUpdatePage() {
         </form>
       </div>
       <div className="sideContainer">
-        <img src={avatar || nonAvatar} alt="" className="avatar" />
+        <img src={avatar[0] || currentUser.avatar || nonAvatar} alt="" className="avatar" />
         <UploadWidget uwConfig={{
           cloudName: 'dwfi3oxyl',
           uploadPreset: "estate",
@@ -76,7 +81,7 @@ function ProfileUpdatePage() {
           maxImageFileSize: 2000000,
           folder: "avatars"
         }}
-          setAvatar={setAvatar}
+          setState={setAvatar}
         />
       </div>
     </div>
