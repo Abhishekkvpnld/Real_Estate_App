@@ -1,4 +1,6 @@
 import prisma from "../lib/prisma.js";
+import jwt from "jsonwebtoken";
+
 
 export const getPosts = async (req, res) => {
     const query = req.query;
@@ -18,7 +20,7 @@ export const getPosts = async (req, res) => {
         });
 
         // setTimeout(() => {
-            res.status(200).json(posts);
+        res.status(200).json(posts);
         // }, 3000)
 
     } catch (error) {
@@ -39,14 +41,39 @@ export const getPost = async (req, res) => {
                 postDetail: true,
                 user: {
                     select: {
-                        username,
-                        avatar
+                        username:true,
+                        avatar:true
                     }
                 }
             }
         });
 
-        res.status(200).json(post);
+        let userId;
+
+        const token = req.cookies?.token;
+
+        if (!token) {
+            userId = null;
+        } else {
+            jwt.verify(token, process.env.JWT_SECRET_KEY, async (err, payload) => {
+                if (err) {
+                    userId = null;
+                } else {
+                    userId = payload.id;
+                };
+            });
+        };
+
+        const saved = await prisma.savedpost.findUnique({
+            where: {
+                userId_postId: {
+                    postId: id,
+                    userId
+                }
+            }
+        });
+
+        res.status(200).json({...post,isSaved: saved ? true : false});
 
     } catch (error) {
         console.log(error);
@@ -116,3 +143,6 @@ export const deletePost = async (req, res) => {
         res.status(500).json({ message: "Failed to update post...!" });
     };
 };
+
+
+
