@@ -29,15 +29,18 @@ function ProfilePage() {
   }
 
   return (
+
     <div className="profilePage">
       <div className="details">
         <div className="wrapper">
+         
           <div className="title">
             <h1>User Information</h1>
             <Link to={"/profile/update"}>
               <button>Update Profile</button>
             </Link>
           </div>
+
           <div className="info">
             <span>
               Avatar:
@@ -54,12 +57,14 @@ function ProfilePage() {
             </span>
             <button onClick={handleLogout}>Logout</button>
           </div>
+
           <div className="title">
             <h1>My List</h1>
             <Link to={"/add"}>
               <button>Create New Post</button>
             </Link>
           </div>
+
           <Suspense fallback={<p>Loading...</p>}>
             <Await
               resolve={data.postResponse}
@@ -73,6 +78,7 @@ function ProfilePage() {
           <div className="title">
             <h1>Saved List</h1>
           </div>
+
           <Suspense fallback={<p>Loading...</p>}>
             <Await
               resolve={data.postResponse}
@@ -86,7 +92,17 @@ function ProfilePage() {
       </div>
       <div className="chatContainer">
         <div className="wrapper">
-          <Chat />
+
+        <Suspense fallback={<p>Loading...</p>}>
+            <Await
+              resolve={data.chatResponse}
+              errorElement={<p>Error loading chats...!</p>}
+            >
+              {(chatResponse) => <Chat chats={chatResponse.data} />
+              }
+            </Await>
+          </Suspense>
+          
         </div>
       </div>
     </div>
