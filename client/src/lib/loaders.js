@@ -1,4 +1,4 @@
-import axiosRequest from "./apiRequest"
+import axiosRequest from "./apiRequest";
 import { defer } from "react-router-dom";
 
 
@@ -12,6 +12,15 @@ export const singlePageLoader = async ({ request, params }) => {
 export const listPageLoader = async ({ request, params }) => {
     const query = request.url.split("?")[1];
     const postPromise = axiosRequest("/posts?" + query); 
+    return defer({
+        postResponse: postPromise
+    });
+};
+
+
+
+export const profilePageLoader = async () => {
+    const postPromise = axiosRequest("/users/profilePosts"); 
     return defer({
         postResponse: postPromise
     });

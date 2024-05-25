@@ -29,7 +29,7 @@ export const getPosts = async (req, res) => {
     };
 };
 
-
+ 
 
 export const getPost = async (req, res) => {
     const id = req.params.id;
@@ -143,6 +143,9 @@ export const deletePost = async (req, res) => {
         res.status(500).json({ message: "Failed to update post...!" });
     };
 };
+
+
+
 
 
 

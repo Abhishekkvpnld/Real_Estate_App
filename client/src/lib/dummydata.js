@@ -19,7 +19,7 @@ export const listData = [
     price: 1500,
     address: "789 Oxford Street, London",
     latitude: 52.4862,
-    longitude: -1.8904,
+    longitude: -1.8904, 
   },
   {
     id: 3,
