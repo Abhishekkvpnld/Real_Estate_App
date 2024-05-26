@@ -1,18 +1,25 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import "./chat.scss";
 import avatar from "../../routes/profilePage/Avatar.webp";
 import { AuthContext } from "../../context/AuthContext";
 import axiosRequest from "../../lib/apiRequest";
 import { format } from "timeago.js";
+import { SocketContext } from "../../context/SocketContext";
 
 function Chat({ chats }) {
 
   const [chat, setChat] = useState(null);
+
   const { currentUser } = useContext(AuthContext);
+  const { socket } = useContext(SocketContext);
+  const messageEndRef = useRef();
+
+  useEffect(() => {
+    messageEndRef?.current?.scrollIntoView({ behavior: "smooth" });
+  }, [chat]);
 
   const handleOpenChat = async (id, receiver) => {
     try {
-
       const res = await axiosRequest("/chats/" + id);
       setChat({ ...res.data, receiver })
 
@@ -21,10 +28,8 @@ function Chat({ chats }) {
     }
   };
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-
 
     const formData = new FormData(e.target);
     const text = formData.get("text");
@@ -35,11 +40,41 @@ function Chat({ chats }) {
       const res = await axiosRequest.post("/messages/" + chat.id, { text });
       setChat((prev) => ({ ...prev, messages: [...prev.messages, res.data] }));
       e.target.reset();
+      socket.emit("sendMessage", {
+        receiverId: chat.receiver.id,
+        data: res.data
+      });
+
     } catch (error) {
       console.log(error)
-    }
+    };
 
   };
+
+  useEffect(() => {
+
+    const read = async () => {
+      try {
+        await axiosRequest.put("/chats/read/" + chat.id);
+      } catch (error) {
+        console.log(error)
+      };
+    };
+
+    if (chat && socket) {
+      socket.on("getMessage", (data) => {
+        if (chat.id === data.chatId) {
+          setChat((prev) => ({ ...prev, messages: [...prev.messages, data] }));
+        }
+      });
+    };
+
+    return () => {
+      socket.off("getMessage")
+    };
+
+  }, [socket, chat]);
+
 
   return (
     <div className="chat">
@@ -49,7 +84,7 @@ function Chat({ chats }) {
         {
           chats?.map((chat) => (
             <div className="message" key={chat.id} style={{
-              backgroundColor: chat.seenBy.includes(currentUser.id)
+              backgroundColor: chat.seenBy.includes(currentUser.id) || chats?.id === chat.id
                 ? "white"
                 : "lightblue"
             }}
@@ -94,6 +129,7 @@ function Chat({ chats }) {
                 </div>
               ))
             }
+            <div ref={messageEndRef}></div>
 
           </div>
           <form onSubmit={handleSubmit} className="bottom">
