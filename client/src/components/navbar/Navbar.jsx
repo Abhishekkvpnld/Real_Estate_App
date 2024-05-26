@@ -3,18 +3,21 @@ import "./navbar.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import avatar from "/Avatar.webp";
+import { useNotificationStore } from "../../lib/notificationStore";
 
 function Navbar() {
   const [open, setOpen] = useState(false);
 
   const navigate = useNavigate();
   const { currentUser } = useContext(AuthContext);
+  const fetch = useNotificationStore((state) => state.fetch);
+  const number = useNotificationStore((state) => state.number);
 
-  useEffect(()=>{
-    if(!currentUser){
+  useEffect(() => {
+    if (!currentUser) {
       navigate("/login")
     }
-  },[currentUser,navigate]);
+  }, [currentUser, navigate]);
 
 
   return (
@@ -33,11 +36,11 @@ function Navbar() {
         {currentUser ? (
           <div className="user">
             <img
-              src={currentUser.avatar || avatar} 
+              src={currentUser.avatar || avatar}
             />
             <span>{currentUser.username}</span>
             <Link to="/profile" className="profile">
-              <div className="notification">3</div>
+              {number > 0 && <div className="notification">{number}</div>}
               <span>Profile</span>
             </Link>
           </div>

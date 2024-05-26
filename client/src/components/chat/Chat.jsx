@@ -5,6 +5,7 @@ import { AuthContext } from "../../context/AuthContext";
 import axiosRequest from "../../lib/apiRequest";
 import { format } from "timeago.js";
 import { SocketContext } from "../../context/SocketContext";
+import { useNotificationStore } from "../../lib/notificationStore";
 
 function Chat({ chats }) {
 
@@ -12,7 +13,10 @@ function Chat({ chats }) {
 
   const { currentUser } = useContext(AuthContext);
   const { socket } = useContext(SocketContext);
+
   const messageEndRef = useRef();
+
+  const decrease = useNotificationStore((state) => state.decrease);
 
   useEffect(() => {
     messageEndRef?.current?.scrollIntoView({ behavior: "smooth" });
@@ -21,7 +25,10 @@ function Chat({ chats }) {
   const handleOpenChat = async (id, receiver) => {
     try {
       const res = await axiosRequest("/chats/" + id);
-      setChat({ ...res.data, receiver })
+      if (!res.data.seenBy.includes(currentUser.id)) {
+        decrease();
+      }
+      setChat({ ...res.data, receiver });
 
     } catch (error) {
       console.log(error);
