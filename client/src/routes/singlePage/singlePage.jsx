@@ -12,15 +12,17 @@ import axiosRequst from "../../lib/apiRequest";
 function SinglePage() {
 
   const post = useLoaderData();
+  console.log("post",post);
 
   const [save, setSave] = useState(post.isSave);
   const { currentUser } = useContext(AuthContext);
 
   const handleSave = async () => {
+
     setSave((prev) => !prev)
     if (!currentUser) {
       redirect("/login");
-    }
+    };
 
     try {
 
@@ -143,9 +145,9 @@ function SinglePage() {
               <img src="/chat.png" alt="" />
               Send a Message
             </button>
-            <button onClick={handleSave} style={{backgroundColor : save ? "green" : "white"}}>
+            <button onClick={handleSave} style={{backgroundColor : save ? "white" : "lightgreen"}}>
               <img src="/save.png" alt="" />
-              {save ? "Place saved" : "Save the Place"}
+              {save ? "Save the Place" : "Place saved"}
             </button>
           </div>
         </div>

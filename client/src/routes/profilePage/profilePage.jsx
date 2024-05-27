@@ -33,7 +33,7 @@ function ProfilePage() {
     <div className="profilePage">
       <div className="details">
         <div className="wrapper">
-         
+
           <div className="title">
             <h1>User Information</h1>
             <Link to={"/profile/update"}>
@@ -59,7 +59,7 @@ function ProfilePage() {
           </div>
 
           <div className="title">
-            <h1>My List</h1> 
+            <h1>My List</h1>
             <Link to={"/add"}>
               <button>Create New Post</button>
             </Link>
@@ -70,7 +70,7 @@ function ProfilePage() {
               resolve={data.postResponse}
               errorElement={<p>Error loading posts...!</p>}
             >
-              {(postResponse) => <List posts={postResponse.data.userPosts} />
+              {(postResponse) => <List posts={postResponse?.data?.userPosts} />
               }
             </Await>
           </Suspense>
@@ -81,29 +81,30 @@ function ProfilePage() {
 
           <Suspense fallback={<p>Loading...</p>}>
             <Await
-              resolve={data.postResponse}
+              resolve={data?.postResponse}
               errorElement={<p>Error loading posts...!</p>}
             >
-              {(postResponse) => <List posts={postResponse.data.savedPosts} />
+              {(postResponse) => <List posts={postResponse?.data?.savedPosts} />
               }
             </Await>
           </Suspense>
+
         </div>
       </div>
       {/* chat container */}
       <div className="chatContainer">
         <div className="wrapper">
 
-        <Suspense fallback={<p>Loading...</p>}>
+          <Suspense fallback={<p>Loading...</p>}>
             <Await
               resolve={data.chatResponse}
               errorElement={<p>Error loading chats...!</p>}
             >
-              {(chatResponse) => <Chat chats={chatResponse.data} />
+              {(chatResponse) => <Chat chats={chatResponse?.data} />
               }
             </Await>
           </Suspense>
-          
+
         </div>
       </div>
     </div>

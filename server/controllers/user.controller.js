@@ -89,30 +89,32 @@ export const savePost = async (req, res) => {
     const tokenUserId = req.userId;
 
     try {
-        const savedPost = await prisma.savedpost.findUnique({
+        const savedPosts = await prisma.savedPost.findUnique({
             where: {
                 userId_postId: {
                     userId: tokenUserId,
-                    postId
-                }
-            }
+                    postId: postId,
+                },
+            },
         });
 
-        if (savePost) {
-            await prisma.savedpost.delete({
+
+        if (savedPosts) {
+            await prisma.savedPost.delete({
                 where: {
-                    id: savedPost.id
+                    id: savedPosts.id
                 }
             });
             res.status(200).json({ message: "Post removed from saved list..." });
         } else {
 
-            await prisma.savedpost.create({
+            await prisma.savedPost.create({
                 data: {
                     userId: tokenUserId,
-                    postId
+                    postId: postId
                 }
             });
+
             res.status(200).json({ message: "Post saved successfully..." })
         };
 
@@ -132,7 +134,7 @@ export const profilePosts = async (req, res) => {
             where: { userId: tokenUserId }
         });
 
-        const saved = await prisma.savedpost.findMany({
+        const saved = await prisma.savedPost.findMany({
             where: { userId: tokenUserId },
             include: {
                 post: true

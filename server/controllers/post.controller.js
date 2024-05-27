@@ -28,8 +28,8 @@ export const getPosts = async (req, res) => {
         res.status(500).json({ message: "Failed to get posts...!" });
     };
 };
-
  
+
 
 export const getPost = async (req, res) => {
     const id = req.params.id;
@@ -41,8 +41,8 @@ export const getPost = async (req, res) => {
                 postDetail: true,
                 user: {
                     select: {
-                        username:true,
-                        avatar:true
+                        username: true,
+                        avatar: true
                     }
                 }
             }
@@ -64,16 +64,16 @@ export const getPost = async (req, res) => {
             });
         };
 
-        const saved = await prisma.savedpost.findUnique({
+        const saved = await prisma.savedPost.findUnique({
             where: {
                 userId_postId: {
                     postId: id,
-                    userId
+                    userId: userId
                 }
             }
         });
 
-        res.status(200).json({...post,isSaved: saved ? true : false});
+        res.status(200).json({ ...post, isSaved: saved ? true : false });
 
     } catch (error) {
         console.log(error);
@@ -89,20 +89,20 @@ export const addPost = async (req, res) => {
 
     try {
         const newPost = await prisma.post.create({
-          data: {
-            ...body.postData,
-            userId: tokenUserId,
-            postDetail: {
-              create: body.postDetail,
-            }, 
-          },
-        }); 
+            data: {
+                ...body.postData,
+                userId: tokenUserId,
+                postDetail: {
+                    create: body.postDetail,
+                },
+            },
+        });
 
         res.status(200).json(newPost);
-      } catch (err) {
+    } catch (err) {
         console.log(err);
         res.status(500).json({ message: "Failed to create post" });
-      };
+    };
 };
 
 

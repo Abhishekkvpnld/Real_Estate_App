@@ -23,6 +23,7 @@ export const profilePageLoader = async () => {
     const postPromise = axiosRequest("/users/profilePosts");
     const chatPromise = axiosRequest("/chats");
     console.log("chatresponse",chatPromise);
+    console.log('postRsponce',postPromise)
     return defer({
         chatResponse: chatPromise,
         postResponse: postPromise
