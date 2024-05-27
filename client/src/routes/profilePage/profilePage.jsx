@@ -59,7 +59,7 @@ function ProfilePage() {
           </div>
 
           <div className="title">
-            <h1>My List</h1>
+            <h1>My List</h1> 
             <Link to={"/add"}>
               <button>Create New Post</button>
             </Link>
@@ -90,6 +90,7 @@ function ProfilePage() {
           </Suspense>
         </div>
       </div>
+      {/* chat container */}
       <div className="chatContainer">
         <div className="wrapper">
 

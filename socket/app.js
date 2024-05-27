@@ -28,11 +28,11 @@ const getUser = (userId) => {
 
 
 io.on("connection", (socket) => {
-    console.log(socket.id);
     socket.on("newUser", (userId) => {
         addUsers(userId, socket.id);
     });
 
+    
     socket.on("sendMessage", ({ receiverId, data }) => {
         const receiver = getUser(receiverId);
         io.to(receiver.socketId).emit("getMessage", data);

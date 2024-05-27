@@ -91,9 +91,9 @@ function Chat({ chats }) {
         {
           chats?.map((chat) => (
             <div className="message" key={chat.id} style={{
-              backgroundColor: chat.seenBy.includes(currentUser.id) || chats?.id === chat.id
-                ? "white"
-                : "lightblue"
+              backgroundColor: chat.seenBy.includes(currentUser.id) || chats?.id === chat /**********************/
+                ? "lightblue"
+                : "white"
             }}
               onClick={() => handleOpenChat(chat.id, chat.receiver)}
             >

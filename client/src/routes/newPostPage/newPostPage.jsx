@@ -33,7 +33,7 @@ function NewPostPage() {
           bathroom: parseInt(inputs.bathroom),
           type: inputs.type,
           property: inputs.property,
-          latiyude: inputs.latitude,
+          latitude: inputs.latitude,
           longitude: inputs.longitude,
           images: images
         },
@@ -45,7 +45,7 @@ function NewPostPage() {
           size: parseInt(inputs.size),
           school: parseInt(inputs.school),
           bus: parseInt(inputs.bus),
-          restaurent: parseInt(inputs.restaurent)
+          restaurant: parseInt(inputs.restaurant)
         }
 
       });
