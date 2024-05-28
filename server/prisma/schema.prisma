@@ -76,7 +76,7 @@ model User {
   username  String      @unique
   password  String
   avatar    String?
-  posts     Post[] 
+  posts     Post[]
   savedpost SavedPost[]
   chats     Chat[]      @relation(fields: [chatIDs], references: [id])
   chatIDs   String[]    @db.ObjectId
@@ -87,10 +87,10 @@ model Chat {
   id          String    @id @default(auto()) @map("_id") @db.ObjectId
   users       User[]    @relation(fields: [userIDs], references: [id])
   userIDs     String[]  @db.ObjectId
-  createdAt   DateTime  @default(now())
   seenBy      String[]  @db.ObjectId
-  Message     Message[]
+  messages    Message[]
   lastMessage String?
+  createdAt   DateTime  @default(now())
 }
 
 model Message {
@@ -100,4 +100,5 @@ model Message {
   chat   Chat     @relation(fields: [chatId], references: [id])
   chatId String   @db.ObjectId
   seenBy String[] @db.ObjectId
+  createdAt   DateTime  @default(now())
 }

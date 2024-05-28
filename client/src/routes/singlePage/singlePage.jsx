@@ -12,9 +12,8 @@ import axiosRequst from "../../lib/apiRequest";
 function SinglePage() {
 
   const post = useLoaderData();
-  console.log("post",post);
 
-  const [save, setSave] = useState(post.isSave);
+  const [save, setSave] = useState(post.isSaved);
   const { currentUser } = useContext(AuthContext);
 
   const handleSave = async () => {
@@ -140,14 +139,14 @@ function SinglePage() {
           <div className="mapContainer">
             <Map items={[post]} />
           </div>
-          <div className="buttons"> 
+          <div className="buttons">
             <button>
               <img src="/chat.png" alt="" />
               Send a Message
             </button>
-            <button onClick={handleSave} style={{backgroundColor : save ? "white" : "lightgreen"}}>
+            <button onClick={handleSave} style={{ backgroundColor: save ? "lightgreen" : "white" }}>
               <img src="/save.png" alt="" />
-              {save ? "Save the Place" : "Place saved"}
+              {save ? "Place saved" : "Save the place"}
             </button>
           </div>
         </div>

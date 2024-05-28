@@ -8,7 +8,7 @@ import { Suspense, useContext } from "react";
 import Avatar from "./Avatar.webp"
 
 function ProfilePage() {
-
+  
   const data = useLoaderData();
 
   const navigate = useNavigate();
@@ -97,7 +97,7 @@ function ProfilePage() {
 
           <Suspense fallback={<p>Loading...</p>}>
             <Await
-              resolve={data.chatResponse}
+              resolve={data?.chatResponse}
               errorElement={<p>Error loading chats...!</p>}
             >
               {(chatResponse) => <Chat chats={chatResponse?.data} />

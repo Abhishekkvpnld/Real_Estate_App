@@ -6,8 +6,9 @@ import axiosRequest from "../../lib/apiRequest";
 import { format } from "timeago.js";
 import { SocketContext } from "../../context/SocketContext";
 import { useNotificationStore } from "../../lib/notificationStore";
+import send from "./send-icon.svg";
 
-function Chat({ chats }) {
+function Chat({chats }) {
 
   const [chat, setChat] = useState(null);
 
@@ -24,6 +25,7 @@ function Chat({ chats }) {
 
   const handleOpenChat = async (id, receiver) => {
     try {
+
       const res = await axiosRequest("/chats/" + id);
       if (!res.data.seenBy.includes(currentUser.id)) {
         decrease();
@@ -89,20 +91,20 @@ function Chat({ chats }) {
         <h1>Messages</h1>
 
         {
-          chats?.map((chat) => (
-            <div className="message" key={chat.id} style={{
-              backgroundColor: chat.seenBy.includes(currentUser.id) || chats?.id === chat /**********************/
-                ? "lightblue"
+          chats?.map((c) => (
+            <div className="message" key={c.id} style={{
+              backgroundColor: c?.seenBy.includes(currentUser.id) || chat?.id === c.id /**********************/
+                ? "lightgreen"
                 : "white"
             }}
-              onClick={() => handleOpenChat(chat.id, chat.receiver)}
+              onClick={() => handleOpenChat(c?.id, c?.receiver)}
             >
               <img
-                src={chat.receiver.avatar || avatar}
+                src={c?.receiver?.avatar || avatar}
                 alt=""
               />
-              <span>{chat.receiver.username}</span>
-              <p>{chat.lastMessage}</p>
+              <span>{c.receiver.username}</span>
+              <p>{c.lastMessage}</p>
             </div>
           ))
         }
@@ -141,7 +143,7 @@ function Chat({ chats }) {
           </div>
           <form onSubmit={handleSubmit} className="bottom">
             <textarea name="text"></textarea>
-            <button>Send</button>
+            <button><img src={send} alt="" /></button>
           </form>
         </div>
       )}

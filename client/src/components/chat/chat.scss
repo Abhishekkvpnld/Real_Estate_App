@@ -92,25 +92,36 @@
       }
     }
     .bottom {
-      border-top: 2px solid #f7c14b85;
+      border-top: 2px solid #0e030485;
       height: 60px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      margin-bottom: 20px;
+      border: 2px dashed black;
 
       textarea{
         flex:3;
         height: 100%;
         border: none;
+        border-radius: 3px;
         padding: 20px;
+
       }
 
       button{
         flex:1;
-        background-color: #f7c14b85;
+        background-color: rgb(42, 188, 221);
         height: 100%;
         border: none;
         cursor: pointer;
+        color: white;
+        border-radius: 10px;
+
+        
+        img{
+          width: 40px;
+        }
       }
     }
   }

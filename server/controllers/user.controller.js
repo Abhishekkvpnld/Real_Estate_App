@@ -141,14 +141,14 @@ export const profilePosts = async (req, res) => {
             }
         });
 
-        const savedPost = saved.map((item) => item.post);
+        const savedPosts = saved.map((item) => item.post);
 
-        res.status(200).json({ userPosts, savedPost });
+        res.status(200).json({ userPosts, savedPosts });
 
     } catch (error) {
         console.log(error);
         res.status(500).json({ message: "Failed to get profile posts...!" })
-    }
+    };
 };
 
 

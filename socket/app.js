@@ -3,7 +3,7 @@ import { Server } from "socket.io";
 
 const io = new Server({
     cors: {
-        origin: "http://localhost:5173"
+        origin: "http://localhost:5173" 
     }
 });
 
@@ -29,6 +29,7 @@ const getUser = (userId) => {
 
 io.on("connection", (socket) => {
     socket.on("newUser", (userId) => {
+        console.log('newUser',socket.id)
         addUsers(userId, socket.id);
     });
 

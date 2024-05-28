@@ -29,7 +29,7 @@ export const getChats = async (req, res) => {
             chat.receiver = receiver;
         };
         res.status(200).json(chats);
- 
+
     } catch (error) {
         console.log(error);
         res.status(500).json({ message: "Failed to get chats...!" })
@@ -42,20 +42,20 @@ export const getChat = async (req, res) => {
 
     try {
 
-        const chat = await prisma.chat.findUnique({
+        const openChat = await prisma.chat.findUnique({
             where: {
                 id: req.params.id,
                 userIDs: {
-                    hasSome: [tokenUserId]
-                }
+                    hasSome: [tokenUserId],
+                },
             },
             include: {
                 messages: {
                     orderBy: {
-                        createdAt: "asc"
-                    }
-                }
-            }
+                        createdAt: "asc",
+                    },
+                },
+            },
         });
 
         await prisma.chat.update({
@@ -69,7 +69,7 @@ export const getChat = async (req, res) => {
             }
         });
 
-        res.status(200).json(chat);
+        res.status(200).json(openChat);
 
     } catch (error) {
         console.log(error);
@@ -88,7 +88,7 @@ export const addChat = async (req, res) => {
                 userIDs: [tokenUserId, req.body.receiverId]
             }
         });
-
+        console.log(newChat);
         res.status(200).json(newChat);
 
     } catch (error) {

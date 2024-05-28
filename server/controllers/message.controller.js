@@ -6,7 +6,7 @@ export const addMessage = async (req, res) => {
     const text = req.body.text;
 
     try {
-
+console.log("message",tokenUserId);
         const chat = await prisma.chat.findUnique({
             where: {
                 id: chatId,

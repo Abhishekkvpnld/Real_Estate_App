@@ -11,19 +11,16 @@ export const singlePageLoader = async ({ request, params }) => {
 
 export const listPageLoader = async ({ request, params }) => {
     const query = request.url.split("?")[1];
-    const postPromise = axiosRequest("/posts?" + query);
+    const postPromise = await axiosRequest("/posts?" + query);
     return defer({
         postResponse: postPromise
     });
 };
 
 
-
 export const profilePageLoader = async () => {
-    const postPromise = axiosRequest("/users/profilePosts");
-    const chatPromise = axiosRequest("/chats");
-    console.log("chatresponse",chatPromise);
-    console.log('postRsponce',postPromise)
+    const postPromise = await axiosRequest("/users/profilePosts");
+    const chatPromise = await axiosRequest("/chats");
     return defer({
         chatResponse: chatPromise,
         postResponse: postPromise
