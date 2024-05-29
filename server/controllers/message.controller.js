@@ -6,7 +6,6 @@ export const addMessage = async (req, res) => {
     const text = req.body.text;
 
     try {
-console.log("message",tokenUserId);
         const chat = await prisma.chat.findUnique({
             where: {
                 id: chatId,
@@ -41,5 +40,5 @@ console.log("message",tokenUserId);
     } catch (error) {
         console.log(error);
         res.status(500).json({ message: "Failed to add message...!" });
-    }
+    };
 };

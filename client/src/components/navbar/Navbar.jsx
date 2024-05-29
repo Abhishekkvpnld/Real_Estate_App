@@ -9,15 +9,18 @@ function Navbar() {
   const [open, setOpen] = useState(false);
 
   const navigate = useNavigate();
+
   const { currentUser } = useContext(AuthContext);
   const fetch = useNotificationStore((state) => state.fetch);
   const number = useNotificationStore((state) => state.number);
+
 
   useEffect(() => {
     if (!currentUser) {
       navigate("/login")
     }
-  }, [currentUser, navigate]);
+    fetch();
+  }, [currentUser, navigate, fetch]);
 
 
   return (
