@@ -40,6 +40,10 @@
           cursor: pointer;
           border: none;
           border-radius: 5px;
+
+          &:hover {
+            transform: scale(1.05);
+          }
         }
       }
 
@@ -55,13 +59,18 @@
         }
 
         button {
-          width: 100px;
-          background-color: rgb(174, 60, 28);
+          width: 200px;
+          height: 50px;
+          background-color: rgb(28, 174, 171);
           padding: 10px 20px;
           border: none;
           border-radius: 5px;
           color: white;
           cursor: pointer;
+
+          &:hover {
+            transform: scale(1.05);
+          }
         }
 
         img {
