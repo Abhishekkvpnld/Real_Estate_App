@@ -56,7 +56,7 @@ function Chat({chats }) {
 
     } catch (error) {
       console.log(error)
-    };
+    }
 
   };
 
@@ -67,7 +67,7 @@ function Chat({chats }) {
         await axiosRequest.put("/chats/read/" + chat.id);
       } catch (error) {
         console.log(error)
-      };
+      }
     };
 
     if (chat && socket) {
@@ -76,7 +76,7 @@ function Chat({chats }) {
           setChat((prev) => ({ ...prev, messages: [...prev.messages, data] }));
         }
       });
-    };
+    }
 
     return () => {
       socket.off("getMessage")
@@ -142,7 +142,7 @@ function Chat({chats }) {
 
           </div>
           <form onSubmit={handleSubmit} className="bottom">
-            <textarea name="text"></textarea>
+            <textarea name="text" placeholder="type here..."></textarea>
             <button><img src={send} alt="" /></button>
           </form>
         </div>

@@ -21,6 +21,9 @@ export const listPageLoader = async ({ request, params }) => {
 export const profilePageLoader = async () => {
     const postPromise = await axiosRequest("/users/profilePosts");
     const chatPromise = await axiosRequest("/chats");
+
+    console.log("chatPromise",chatPromise)
+
     return defer({
         chatResponse: chatPromise,
         postResponse: postPromise

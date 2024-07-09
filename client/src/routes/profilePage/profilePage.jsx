@@ -8,8 +8,10 @@ import { Suspense, useContext } from "react";
 import Avatar from "./Avatar.webp"
 
 function ProfilePage() {
-  
+
   const data = useLoaderData();
+
+  console.log("first",data)
 
   const navigate = useNavigate();
   const { currentUser, updateUser } = useContext(AuthContext);
@@ -67,7 +69,7 @@ function ProfilePage() {
 
           <Suspense fallback={<p>Loading...</p>}>
             <Await
-              resolve={data.postResponse}
+              resolve={data?.postResponse}
               errorElement={<p>Error loading posts...!</p>}
             >
               {(postResponse) => <List posts={postResponse?.data?.userPosts} />
@@ -91,6 +93,8 @@ function ProfilePage() {
 
         </div>
       </div>
+
+
       {/* chat container */}
       <div className="chatContainer">
         <div className="wrapper">
@@ -100,8 +104,7 @@ function ProfilePage() {
               resolve={data?.chatResponse}
               errorElement={<p>Error loading chats...!</p>}
             >
-              {(chatResponse) => <Chat chats={chatResponse?.data} />
-              }
+              {(chatResponse) => <Chat chats={chatResponse?.data} />}
             </Await>
           </Suspense>
 
@@ -109,6 +112,6 @@ function ProfilePage() {
       </div>
     </div>
   )
-};
+}
 
 export default ProfilePage;

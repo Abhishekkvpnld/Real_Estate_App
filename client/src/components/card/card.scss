@@ -2,7 +2,10 @@
 
 .card {
   display: flex;
+  padding: 1rem;
   gap: 20px;
+  border: 1px solid rgb(14, 14, 14);
+  border-radius: 1rem;
 
   .imageContainer {
     flex: 2;
@@ -56,8 +59,13 @@
       font-weight: 300;
       padding: 5px;
       border-radius: 5px;
-      background-color: rgba(254, 205, 81, 0.438);
+      border: 1px dashed black;
       width: max-content;
+    }
+
+    .price::before {
+      content: "\20B9";
+      margin-right: 5px;
     }
 
     .bottom {
@@ -92,9 +100,13 @@
           display: flex;
           align-items: center;
           justify-content: center;
+          transition: transform 0.3s ease-in-out;
 
           &:hover {
             background-color: lightgray;
+            transform: scale(1.1);
+            border: 1px solid black
+            
           }
         }
       }

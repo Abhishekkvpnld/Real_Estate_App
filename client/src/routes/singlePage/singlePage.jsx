@@ -21,7 +21,7 @@ function SinglePage() {
     setSave((prev) => !prev)
     if (!currentUser) {
       redirect("/login");
-    };
+    }
 
     try {
 
@@ -36,7 +36,9 @@ function SinglePage() {
 
   return (
     <div className="singlePage">
+
       <div className="details">
+
         <div className="wrapper">
           <Slider images={post.images} />
           <div className="info">
@@ -58,9 +60,11 @@ function SinglePage() {
           </div>
         </div>
       </div>
+
       <div className="features">
         <div className="wrapper">
           <p className="title">General</p>
+
           <div className="listVertical">
             <div className="feature">
               <img src="/utility.png" alt="" />
@@ -75,7 +79,9 @@ function SinglePage() {
                 }
               </div>
             </div>
+
             <div className="feature">
+
               <img src="/pet.png" alt="" />
               <div className="featureText">
                 <span>Pet Policy</span>
@@ -87,32 +93,45 @@ function SinglePage() {
                   )
                 }
               </div>
+
             </div>
+
             <div className="feature">
+
               <img src="/fee.png" alt="" />
               <div className="featureText">
                 <span>Income Policy</span>
                 <p>{post?.postDetail?.income}</p>
               </div>
+
             </div>
+
           </div>
+
           <p className="title">Sizes</p>
+
           <div className="sizes">
             <div className="size">
               <img src="/size.png" alt="" />
               <span>{post?.postDetail?.size} sqft</span>
             </div>
+
             <div className="size">
               <img src="/bed.png" alt="" />
               <span>{post?.bedroom} beds</span>
             </div>
+
             <div className="size">
               <img src="/bath.png" alt="" />
               <span>{post?.bathroom} bathroom</span>
             </div>
+
           </div>
+
           <p className="title">Nearby Places</p>
+
           <div className="listHorizontal">
+
             <div className="feature">
               <img src="/school.png" alt="" />
               <div className="featureText">
@@ -120,6 +139,7 @@ function SinglePage() {
                 <p>{post?.postDetail?.school}m away</p>
               </div>
             </div>
+
             <div className="feature">
               <img src="/pet.png" alt="" />
               <div className="featureText">
@@ -127,6 +147,7 @@ function SinglePage() {
                 <p>{post?.postDetail?.bus}m away</p>
               </div>
             </div>
+
             <div className="feature">
               <img src="/fee.png" alt="" />
               <div className="featureText">
@@ -134,11 +155,15 @@ function SinglePage() {
                 <p>{post?.postDetail?.restaurant}m away</p>
               </div>
             </div>
+
           </div>
+
           <p className="title">Location</p>
+
           <div className="mapContainer">
             <Map items={[post]} />
           </div>
+
           <div className="buttons">
             <button>
               <img src="/chat.png" alt="" />
@@ -149,6 +174,7 @@ function SinglePage() {
               {save ? "Place saved" : "Save the place"}
             </button>
           </div>
+
         </div>
       </div>
     </div>

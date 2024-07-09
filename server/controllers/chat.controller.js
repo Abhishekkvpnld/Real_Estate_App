@@ -28,6 +28,7 @@ export const getChats = async (req, res) => {
             })
             chat.receiver = receiver;
         };
+
         res.status(200).json(chats);
 
     } catch (error) {
@@ -113,7 +114,7 @@ export const readChat = async (req, res) => {
                 seenBy: {
                     set: [tokenUserId]
                 }
-            }
+            } 
         });
 
         res.status(200).json(chat);
