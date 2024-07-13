@@ -11,7 +11,7 @@ function ProfilePage() {
 
   const data = useLoaderData();
 
-  console.log("first",data)
+  console.log("first", data)
 
   const navigate = useNavigate();
   const { currentUser, updateUser } = useContext(AuthContext);
@@ -43,21 +43,26 @@ function ProfilePage() {
             </Link>
           </div>
 
+
+          {/* Profile Data */}
           <div className="info">
-            <span>
-              Avatar:
-              <img
-                src={currentUser.avatar || Avatar}
-                alt=""
-              />
-            </span>
-            <span>
-              Username: <b>{currentUser.username}</b>
-            </span>
-            <span>
-              E-mail: <b>{currentUser.email}</b>
-            </span>
-            <button onClick={handleLogout}>Logout</button>
+            <div style={{display:"flex",flexDirection:"column",gap:"10px"}}>
+              <span>
+                Username: <b>{currentUser.username}</b>
+              </span>
+              <span>
+                E-mail: <b>{currentUser.email}</b>
+              </span>
+            </div>
+            <div style={{display:"flex",flexDirection:"column",gap:"10px",justifyContent:"center",alignItems:"center"}}>
+              <span>
+                <img
+                  src={currentUser.avatar || Avatar}
+                  alt=""
+                />
+              </span>
+              <button onClick={handleLogout}>Logout</button>
+            </div>
           </div>
 
           <div className="title">

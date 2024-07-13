@@ -6,6 +6,11 @@
   gap: 20px;
   border: 1px solid rgb(14, 14, 14);
   border-radius: 1rem;
+  transition: box-shadow 0.5s ease-in-out, transform 0.5s ease-in-out;;
+        
+  &:hover{
+    box-shadow: 2px 2px 5px  grey;
+  }
 
   .imageContainer {
     flex: 2;
