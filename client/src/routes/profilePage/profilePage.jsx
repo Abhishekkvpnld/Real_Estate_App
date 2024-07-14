@@ -34,6 +34,7 @@ function ProfilePage() {
 
     <div className="profilePage">
       <div className="details">
+
         <div className="wrapper">
 
           <div className="title">
@@ -46,7 +47,7 @@ function ProfilePage() {
 
           {/* Profile Data */}
           <div className="info">
-            <div style={{display:"flex",flexDirection:"column",gap:"10px"}}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
               <span>
                 Username: <b>{currentUser.username}</b>
               </span>
@@ -54,7 +55,7 @@ function ProfilePage() {
                 E-mail: <b>{currentUser.email}</b>
               </span>
             </div>
-            <div style={{display:"flex",flexDirection:"column",gap:"10px",justifyContent:"center",alignItems:"center"}}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "10px", justifyContent: "center", alignItems: "center" }}>
               <span>
                 <img
                   src={currentUser.avatar || Avatar}

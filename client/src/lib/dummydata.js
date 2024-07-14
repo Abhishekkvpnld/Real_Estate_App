@@ -87,6 +87,7 @@ export const listData = [
     latitude: 51.4545,
     longitude: -2.5879,
   },
+  
 ];
 
 export const singlePostData = {
@@ -118,3 +119,111 @@ export const userData = {
   name: "John Doe",
   images: "https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
 };
+
+
+const hotels = [
+  {
+    id: 1,
+    title: "Luxury Beachfront Hotel in Goa",
+    images: [
+      "https://images.pexels.com/photos/2214574/pexels-photo-2214574.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    ],
+    bedroom: 3,
+    bathroom: 2,
+    price: 1500,
+    address: "123 Beach Road, Goa",
+    latitude: 15.2993,
+    longitude: 74.1240,
+  },
+  {
+    id: 2,
+    title: "Heritage Hotel in Jaipur",
+    images: [
+      "https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    ],
+    bedroom: 4,
+    bathroom: 3,
+    price: 2000,
+    address: "456 Palace Road, Jaipur",
+    latitude: 26.9124,
+    longitude: 75.7873,
+  },
+  {
+    id: 3,
+    title: "Modern Hotel in Bangalore",
+    images: [
+      "https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    ],
+    bedroom: 2,
+    bathroom: 2,
+    price: 1200,
+    address: "789 IT Park, Bangalore",
+    latitude: 12.9716,
+    longitude: 77.5946,
+  },
+  {
+    id: 4,
+    title: "Cozy Mountain Hotel in Manali",
+    images: [
+      "https://images.pexels.com/photos/271672/pexels-photo-271672.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    ],
+    bedroom: 3,
+    bathroom: 2,
+    price: 1000,
+    address: "101 Hilltop Road, Manali",
+    latitude: 32.2396,
+    longitude: 77.1887,
+  },
+  {
+    id: 5,
+    title: "Elegant Hotel in Mumbai",
+    images: [
+      "https://images.pexels.com/photos/290386/pexels-photo-290386.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    ],
+    bedroom: 2,
+    bathroom: 1,
+    price: 1800,
+    address: "102 Marine Drive, Mumbai",
+    latitude: 19.0760,
+    longitude: 72.8777,
+  },
+  {
+    id: 6,
+    title: "Boutique Hotel in Delhi",
+    images: [
+      "https://images.pexels.com/photos/280221/pexels-photo-280221.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    ],
+    bedroom: 4,
+    bathroom: 3,
+    price: 2200,
+    address: "305 Connaught Place, Delhi",
+    latitude: 28.6139,
+    longitude: 77.2090,
+  },
+  {
+    id: 7,
+    title: "Riverside Hotel in Rishikesh",
+    images: [
+      "https://images.pexels.com/photos/1320687/pexels-photo-1320687.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    ],
+    bedroom: 3,
+    bathroom: 2,
+    price: 1600,
+    address: "908 Ganga Road, Rishikesh",
+    latitude: 30.0869,
+    longitude: 78.2676,
+  },
+  {
+    id: 8,
+    title: "Serene Hotel in Udaipur",
+    images: [
+      "https://images.pexels.com/photos/189333/pexels-photo-189333.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    ],
+    bedroom: 4,
+    bathroom: 3,
+    price: 2500,
+    address: "567 Lake Palace Road, Udaipur",
+    latitude: 24.5854,
+    longitude: 73.7125,
+  }
+];

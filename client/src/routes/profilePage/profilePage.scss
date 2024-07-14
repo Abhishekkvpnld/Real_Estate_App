@@ -14,6 +14,14 @@
     overflow-y: scroll;
     padding-bottom: 50px;
 
+    &::-webkit-scrollbar {
+      width: 5px;
+      height: 0px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: rgb(159, 158, 158);
+    }
+
     @include md {
       flex: none;
       height: max-content;
@@ -32,7 +40,6 @@
         color: blue;
         padding: 0%;
 
-
         h1 {
           font-weight: 700;
           color: black;
@@ -44,7 +51,7 @@
           cursor: pointer;
           border: none;
           border-radius: 5px;
-          transition: transform 0.3s ease-in-out;;
+          transition: transform 0.3s ease-in-out;
 
           &:hover {
             transform: scale(1.05);
@@ -60,12 +67,11 @@
         justify-content: space-around;
         gap: 50px;
         border: 0.5px solid black;
-        transition: box-shadow 0.5s ease-in-out, transform 0.5s ease-in-out;;
-        
-        &:hover{
-          box-shadow: 4px 4px 5px  grey;
-        }
+        transition: box-shadow 0.5s ease-in-out, transform 0.5s ease-in-out;
 
+        &:hover {
+          box-shadow: 4px 4px 5px grey;
+        }
 
         span {
           display: flex;
@@ -102,6 +108,9 @@
     flex: 2;
     background-color: white;
     height: 100%;
+    padding: 5px;
+    border-radius: 1rem;
+    box-shadow: -1px 0 10px -5px rgba(0, 0, 0, 0.5);
 
     @include md {
       flex: none;

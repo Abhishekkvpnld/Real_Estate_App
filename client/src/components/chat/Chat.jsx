@@ -70,6 +70,8 @@ function Chat({chats }) {
       }
     };
 
+    // read()
+
     if (chat && socket) {
       socket.on("getMessage", (data) => {
         if (chat.id === data.chatId) {
@@ -93,7 +95,7 @@ function Chat({chats }) {
         {
           chats?.map((c) => (
             <div className="message" key={c.id} style={{
-              backgroundColor: c?.seenBy.includes(currentUser.id) || chat?.id === c.id /**********************/
+              backgroundColor: c?.seenBy.includes(currentUser.id) || chat?.id === c.id 
                 ? "lightgreen"
                 : "white"
             }}

@@ -50,10 +50,11 @@ nav {
   }
   .right {
     flex: 2;
+    padding-top: 1rem;
     display: flex;
     align-items: center;
+    justify-content: center;
     justify-content: flex-end;
-    background-color: #fcf5f3;
     height: 100%;
 
     @include md {
