@@ -34,7 +34,7 @@ function Register() {
       setError(error.response.data.message);
     } finally {
       setIsLoading(false);
-    };
+    }
 
   };
 
