@@ -15,7 +15,7 @@ dotenv.config();
 
 app.use(
   cors({
-    origin: [process.env.CLIENT_URL, process.env.CLIENT_URL_LOCAL],
+    origin: [process.env.CLIENT_URL, process.env.CLIENT_URL_LOCAL,"http://localhost:5173","https://real-estate-app-wlfr.onrender.com"],
     credentials: true,
   })
 );
