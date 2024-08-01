@@ -11,8 +11,6 @@ function ProfilePage() {
 
   const data = useLoaderData();
 
-  console.log("first", data)
-
   const navigate = useNavigate();
   const { currentUser, updateUser } = useContext(AuthContext);
 
